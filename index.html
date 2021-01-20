@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="test">test</button>
+
+    <script>
+
+        const x = document.querySelector('#test');
+
+        x.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            // if (!event.target.matches('.click-me')) return;
+
+            // Don't follow the link
+            // event.preventDefault();
+
+            // Log the clicked element in the console
+            console.log(event.target);
+
+
+            navigator.bluetooth.requestDevice({
+                filters: [{
+                    services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']
+                }]
+            })
+                .then(device => { 
+                    console.log(device)
+                 })
+                .catch(error => { console.error(error); });
+
+        }, false);
+
+
+    </script>
+</body>
+
+</html>
